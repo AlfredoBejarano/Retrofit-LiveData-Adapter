@@ -16,7 +16,7 @@ data class ApiResult<T>(
     /**
      * Error that happened while executing the call. (if something went wrong).
      */
-    val error: Throwable?,
+    val error: String?,
     /**
      * The result from the API call.
      */

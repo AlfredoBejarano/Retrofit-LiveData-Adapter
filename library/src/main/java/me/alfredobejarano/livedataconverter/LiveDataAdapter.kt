@@ -49,7 +49,7 @@ class LiveDataAdapter<T>(private val responseType: Type) : CallAdapter<T, LiveDa
                      */
                     override fun onFailure(call: Call<T>, t: Throwable) =
                     // Report an API result with a null body and the exception itself.
-                        postValue(ApiResult(CODE_RUNTIME_EXCEPTION, t, null))
+                        postValue(ApiResult(CODE_RUNTIME_EXCEPTION, t.localizedMessage, null))
 
                     /**
                      * This function gets triggered when a call has succeeded at an HTTP level
@@ -66,12 +66,12 @@ class LiveDataAdapter<T>(private val responseType: Type) : CallAdapter<T, LiveDa
                             postValue(ApiResult(response.code(), null, response.body()))
                         } else {
                             // If it is not successful, report the HTTP code, and HTTPException with the response and an null body.
-                            postValue(ApiResult(response.code(), HttpException(response), null))
+                            postValue(ApiResult(response.code(), response.errorBody()?.string(), null))
                         }
                 })
             } else {
                 // If the call has been already executed, post the ApiResult with an Illegal exception detailing that the call has been already executed.
-                postValue(ApiResult(CODE_RUNTIME_EXCEPTION, IllegalStateException("Already executed/enqueued!"), null))
+                postValue(ApiResult(CODE_RUNTIME_EXCEPTION, "Already executed/enqueued!", null))
             }
         }
     }
