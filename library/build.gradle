@@ -1,6 +1,43 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+    }
+}
+
+ext {
+    bintrayRepo = 'RetrofitLiveDataAdapter'
+    bintrayName = 'livedata'
+
+    publishedGroupId = 'me.alfredobejarano.retrofitadapters'
+    libraryName = 'Retrofit LiveData Adapter'
+    artifact = 'livedata'
+
+    libraryDescription = 'Adapter for Retrofit 2 that allows using LiveData objects instead of Call objects.'
+
+    siteUrl = ''
+    gitUrl = 'https://github.com/AlfredoBejarano/Retrofit-LiveData-Adapter'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'alfredobejarano'
+    developerName = 'Alfredo Bejarano'
+    developerEmail = 'alfredocbejarano@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
 android {
     compileSdkVersion 28
 
@@ -39,3 +76,9 @@ dependencies {
 repositories {
     mavenCentral()
 }
+
+tasks.withType(Javadoc).all {
+    enabled = false
+}
+
+apply from: 'installscript.gradle'

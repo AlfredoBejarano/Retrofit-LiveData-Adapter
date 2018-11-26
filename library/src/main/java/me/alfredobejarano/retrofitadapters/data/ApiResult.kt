@@ -1,4 +1,4 @@
-package me.alfredobejarano.retrofitlivedataadapter.data
+package me.alfredobejarano.retrofitadapters.data
 
 /**
  *

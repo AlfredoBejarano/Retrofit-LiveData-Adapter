@@ -1,7 +1,7 @@
-package me.alfredobejarano.retrofitlivedataadapter
+package me.alfredobejarano.retrofitadapters
 
 import androidx.lifecycle.LiveData
-import me.alfredobejarano.retrofitlivedataadapter.data.ApiResult
+import me.alfredobejarano.retrofitadapters.data.ApiResult
 import retrofit2.*
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
