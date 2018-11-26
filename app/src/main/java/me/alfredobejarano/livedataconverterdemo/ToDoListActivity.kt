@@ -1,12 +1,13 @@
 package me.alfredobejarano.livedataconverterdemo
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import me.alfredobejarano.livedataconverterdemo.adapter.ToDoAdapter
 import me.alfredobejarano.livedataconverterdemo.utilities.Injector
 import me.alfredobejarano.livedataconverterdemo.viewmodel.ToDoListViewModel
 
@@ -46,8 +47,19 @@ class ToDoListActivity : AppCompatActivity() {
         // Sets the activity root as a RecyclerView.
         setContentView(mRootView)
         // Retrieve the To Do list.
-        mViewModel.getList().observe(this, Observer {
-            Log.d("LIST", it?.body?.toString() ?: it?.error?.localizedMessage ?: "Null")
+        mViewModel.getList().observe(this, Observer { result ->
+            // Create an adapter for the view if the result body is not null.
+            result.body?.let {
+                // Parse the results as a MutableList.
+                val results = it as MutableList
+                // Sort the results alphabetically.
+                results.sortWith(compareBy { todo -> todo.title })
+                // Report the sorted results to the adapter.
+                mRootView.adapter = ToDoAdapter(results)
+            } ?: run {
+                // Simple error handling, a better implementation can be made, this is just for the demo.
+                Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+            }
         })
     }
 }

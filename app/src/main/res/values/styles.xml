@@ -9,10 +9,11 @@
     </style>
     <style name="MaterialSingleItemTextAppearance">
         <item name="android:alpha">0.87</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">start|center_vertical</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">@dimen/material_list_single_item_text_size</item>
+        <item name="android:layout_height">@dimen/material_single_item_list_height</item>
     </style>
     <dimen name="material_list_single_item_text_size">16sp</dimen>
 </resources>
