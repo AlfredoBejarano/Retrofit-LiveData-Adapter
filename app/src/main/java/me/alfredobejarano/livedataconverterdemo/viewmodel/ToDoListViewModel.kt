@@ -3,7 +3,7 @@ package me.alfredobejarano.livedataconverterdemo.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import me.alfredobejarano.livedataconverter.data.ApiResult
+import me.alfredobejarano.retrofitlivedataadapter.data.ApiResult
 import me.alfredobejarano.livedataconverterdemo.data.ToDo
 import me.alfredobejarano.livedataconverterdemo.data.ToDoRepository
 

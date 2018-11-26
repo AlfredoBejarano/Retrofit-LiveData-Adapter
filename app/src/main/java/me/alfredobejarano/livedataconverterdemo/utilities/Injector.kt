@@ -2,7 +2,7 @@ package me.alfredobejarano.livedataconverterdemo.utilities
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import me.alfredobejarano.livedataconverter.LiveDataAdapter
+import me.alfredobejarano.retrofitlivedataadapter.LiveDataAdapter
 import me.alfredobejarano.livedataconverterdemo.BuildConfig
 import me.alfredobejarano.livedataconverterdemo.data.ToDoApiService
 import me.alfredobejarano.livedataconverterdemo.data.ToDoRepository

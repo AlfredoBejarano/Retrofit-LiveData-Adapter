@@ -1,4 +1,4 @@
-package me.alfredobejarano.livedataconverter.data
+package me.alfredobejarano.retrofitlivedataadapter.data
 
 /**
  *

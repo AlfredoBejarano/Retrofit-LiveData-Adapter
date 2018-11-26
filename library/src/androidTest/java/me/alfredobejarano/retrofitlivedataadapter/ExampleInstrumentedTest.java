@@ -1,4 +1,4 @@
-package me.alfredobejarano.livedataconverter;
+package me.alfredobejarano.retrofitlivedataadapter;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;

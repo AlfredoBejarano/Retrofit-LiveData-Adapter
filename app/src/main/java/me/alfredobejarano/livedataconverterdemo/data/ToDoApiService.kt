@@ -1,7 +1,7 @@
 package me.alfredobejarano.livedataconverterdemo.data
 
 import androidx.lifecycle.LiveData
-import me.alfredobejarano.livedataconverter.data.ApiResult
+import me.alfredobejarano.retrofitlivedataadapter.data.ApiResult
 import retrofit2.http.GET
 
 /**

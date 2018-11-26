@@ -2,7 +2,7 @@ package me.alfredobejarano.livedataconverterdemo.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import me.alfredobejarano.livedataconverter.data.ApiResult
+import me.alfredobejarano.retrofitlivedataadapter.data.ApiResult
 
 /**
  *
