@@ -1,5 +1,6 @@
 package me.alfredobejarano.livedataconverterdemo
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,7 @@ import me.alfredobejarano.livedataconverterdemo.viewmodel.ToDoListViewModel
  * Activity that displays a List of ToDo objects inside a RecyclerView.
  */
 class ToDoListActivity : AppCompatActivity() {
+    private var mLoadingDialog: ProgressDialog? = null
     /**
      * Defines the root view of this activity.
      */
@@ -44,10 +46,12 @@ class ToDoListActivity : AppCompatActivity() {
         }
         // Retrieve a ViewModel for this activity using dependency inversion.
         mViewModel = ViewModelProviders.of(this, mViewModelFactory)[ToDoListViewModel::class.java]
-        // Sets the activity root as a RecyclerView.
-        setContentView(mRootView)
+        // Sets the activity root as a simple progress bar.
+        setContentView(R.layout.layout_loading)
         // Retrieve the To Do list.
         mViewModel.getList().observe(this, Observer { result ->
+            // Sets the activity root as the RecyclerView.
+            setContentView(mRootView)
             // Create an adapter for the view if the result body is not null.
             result.body?.let {
                 // Parse the results as a MutableList.

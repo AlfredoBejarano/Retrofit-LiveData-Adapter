@@ -45,7 +45,10 @@ class ToDoAdapter(private val elements: List<ToDo>) : RecyclerView.Adapter<ToDoA
         // Set the text with a strike paint when the todo is completed.
         if (element.completed) {
             bindComponent.title.alpha = 0.25f
-            bindComponent.title.paintFlags = bindComponent.title.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            bindComponent.title.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+        } else {
+            bindComponent.title.alpha = 0.87f
+            bindComponent.title.paintFlags = Paint.ANTI_ALIAS_FLAG
         }
     }
 

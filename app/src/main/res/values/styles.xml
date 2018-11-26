@@ -15,5 +15,4 @@
         <item name="android:textSize">@dimen/material_list_single_item_text_size</item>
         <item name="android:layout_height">@dimen/material_single_item_list_height</item>
     </style>
-    <dimen name="material_list_single_item_text_size">16sp</dimen>
 </resources>
