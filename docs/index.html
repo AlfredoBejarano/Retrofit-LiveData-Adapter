@@ -61,11 +61,9 @@
 <p>You can also use it to poke your eyes out but, why would you? (<i>actually you can't, it is a String, is not a physical object.	 you dummy!</i>)</p>
 
 <h1>So... I don't want to use this ApiResult class of yours</h1>
-<p>I was also thinking in an Adapter that simply parses to a <b>LiveData</b> containing your response object and siply setting the value as <b>null</b> if <b>any exception happens</b> during the call, I was planning calling it as <b>LazyLiveDataAdapter</b> or something like that.</p>
-<p>Handling the error of your API call only beacuse you got a <b>null</b> result is <b>a really bad idea!</b> as you don't have any information of what went wrong, (and the customer care deparment is going to love you when a user calls with an <b>oopsie, something wrong happened!</b> message and you don't know what happened!)</p>
-
-<p>Anyway, if you really want to (or you are lazy enough to), this hypotetical <b>LazyLiveDataAdapter</b> is coming sometime in the future (or when I get "lazyless" enough to code it, meh, you can always do <b>a pull request</b>) .
-</p>
+<p>You can set the return type of your call as a <b>LiveData</b> containing your response object type, the value will be set as <b>null</b> if <b>any exception happens</b> during the call.</p>
+<p>Handling the error of your API call only because you got a <b>null</b> result is <b>a really bad idea!</b> as you don't have any information of what went wrong, (and the customer care deparment is going to love you when a user calls with an <b>oopsie, something wrong happened!</b> message and you don't know what happened!)</p>
+<p>Anyway, if you really want to (or you are lazy enough to), just set the return type to LiveData.</p>
 <h1>TLDR, MAY I HAVE SOME ADAPTER, BRÖTHER?</h1>
 <p>Yeah sure, add it to your project like this:</p>
 <blockquote>

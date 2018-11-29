@@ -55,21 +55,15 @@ You can also use it to poke your eyes out but, why would you? _(actually you can
 
 ## So... I don't want to use this **ApiResult** class of yours
 
-I was also thinking in an Adapter that simply parses to a **LiveData** containing your response object and siply setting
-the value as **null** if **any exception happens** during the call, I was planning calling it as **LazyLiveDataAdapter** or 
-something like that.
+You can set the return type of your call as a <b>LiveData</b> containing your response object type, the value will be set as <b>null</b> if <b>any exception happens</b> during the call.
 
 ![dangerous](https://i.ibb.co/hYVvcST/dangerous.png)
 
 _You know how dangerous that technique can be, right?_
 
+Handling the error of your API call only because you got a <b>null</b> result is <b>a really bad idea!</b> as you don't have any information of what went wrong, (and the customer care deparment is going to love you when a user calls with an <b>oopsie, something wrong happened!</b> message and you don't know what happened!)
 
-Handling the error of your API call only beacuse you got a **null** result is a **really bad idea!** as you
-don't have any information of **what went wrong**, (and the customer care deparment is going to love you when a user calls
-with an **oopsie, something wrong happened!** message and you don't know what happened!)
-
-Anyway, if you really want to (or you are lazy enough to), this hypotetical **LazyLiveDataAdapter** is coming sometime in the future
-(or when I get "lazyless" enough to code it, meh, you can always do a **pull request**) :bowtie:.
+Anyway, if you really want to (or you are lazy enough to), just set the return type to LiveData.
 
 # TLDR, MAY I HAVE SOME ADAPTER, BRÖTHER?
 
