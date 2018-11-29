@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,7 +17,7 @@ import me.alfredobejarano.livedataconverterdemo.viewmodel.ToDoListViewModel
 
 /**
  *
- * Simple [Fragment] subclass that displays a list of ToDo in a RecylcreView.
+ * Simple [Fragment] subclass that displays a list of ToDo in a RecyclerView.
  *
  * @author Alfredo Bejarano
  * @since November 29, 2018 - 16:28
@@ -35,6 +36,10 @@ class ToDoListFragment : Fragment() {
      * Uses dependency inversion for retrieving a ViewModel Factory for this UI controller ViewModel.
      */
     private val mViewModelFactory = Injector.toDoListViewModelFactory
+    /**
+     * reference to the loading view from the activity.
+     */
+    private lateinit var mLoading: ProgressBar
 
     /**
      * Creates the RecyclerView that will hold the ToDo elements.
@@ -55,6 +60,8 @@ class ToDoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Retrieve a ViewModel for this activity using dependency inversion.
         mViewModel = ViewModelProviders.of(this, mViewModelFactory)[ToDoListViewModel::class.java]
+        // Get the reference for the activity loading view.
+        mLoading = requireActivity().findViewById(R.id.loading)
         // Retrieve the To Do list.
         mViewModel.getList().observe(this, Observer { result ->
             // Create an adapter for the view if the result body is not null.
@@ -69,6 +76,8 @@ class ToDoListFragment : Fragment() {
                 // Simple error handling, a better implementation can be made, this is just for the demo.
                 Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
             }
+            // Hide the loading view.
+            mLoading.visibility = View.GONE
         })
     }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Retrofit LiveDataConverter Demo</string>
+    <string name="title">Títle</string>
+    <string name="oopsie">oopsie, something wrong happened!</string>
 </resources>
