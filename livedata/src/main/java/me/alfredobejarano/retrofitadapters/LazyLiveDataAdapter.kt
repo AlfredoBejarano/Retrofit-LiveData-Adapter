@@ -71,32 +71,4 @@ class LazyLiveDataAdapter<T>(private val responseType: Type) : CallAdapter<T, Li
      * Retrieves the [Type] of the desired response object.
      */
     override fun responseType() = responseType
-
-    /**
-     * Factory to class to use as the Adapter for the Retrofit client.
-     */
-    class Factory : CallAdapter.Factory() {
-        /**
-         * Defines how to create a [LazyLiveDataAdapter] for a Retrofit client.
-         */
-        override fun get(returnType: Type, annotations: Array<Annotation>, retrofit: Retrofit): CallAdapter<*, *>? =
-        // If the return type isn't a LiveData, A proper adapter can't be returned.
-            if (getRawType(returnType) != LiveData::class.java) {
-                null // Return null.
-            } else {
-                // Get the type of the object inside the Result from inside the LiveData.
-                val type = getParameterUpperBound(0, returnType as ParameterizedType)
-                when (type) {
-                    // When the type is not a ParameterizedType, detail that the resource must be parameterized.
-                    !is ParameterizedType -> throw IllegalArgumentException("Resource must be parameterized!")
-                    // If nothing else happens, get the type of for the body and return a LiveDataAdapter object.
-                    else -> {
-                        // Get the body type.
-                        val bodyType = getParameterUpperBound(0, type)
-                        // Return the adapter.
-                        LazyLiveDataAdapter<Any>(bodyType)
-                    }
-                }
-            }
-    }
 }
