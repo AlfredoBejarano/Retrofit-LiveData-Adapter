@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Retrofit LiveData Adapter</title>
+</head>
+<body>
+	<header>
+		<h1>LiveData Adapter for Retrofit</h1>
+		<h2>Adapter for Retrofit 2 that allows using LiveData objects instead of Call objects.</h2>
+		<a href="https://github.com/AlfredoBejarano/Retrofit-LiveData-Adapter" target="_blank">View on GitHub</a>
+	</header>
+	<h1>What is this?</h1>
+	<p>
+		Adapter for Retrofit 2 that allows using LiveData objects as return a return type for API definitions
+	</p>
+	<p>
+		LiveData is part of the Android Jetpack 🚀 Architecture components, and using it with Retrofit is not that hard (but google doesn't bothers about explaining how to 😒), so you can use add this library to your project to define an adapter. (like that RxJava adapter, yay!).
+	</p>
+	<p>
+		The objective of this library is to simplify the usage of <b>Retrofit</b> using <b>LiveData</b>.
+	</p>
+	<h1>How do I use this?</h1>
+	<p>
+		Simple. First, replace all your <b>Call</b> references with <b>LiveData</b> references in your API definitions interface class.
+	</p>
+	<p>
+		This means, from:
+		<h3>MyAwesomeApiService.kt</h3>
+<blockquote>
+	<pre>
+		<code>
+			<span class="keyword">interface </span><span class="className">MyAwesomeAPIService</span> {
+			  	<span class="annotation">@GET(<span class="parameterValue">"/mtndew/flavors"</span>)</span>
+				<span class="keyword">fun</span> <span class="className">fetchMtnDewFlavors()</span>:<span class="annotation">Call</span>&lt;<span class="className">List</span>&lt;<span class="annotation">MtnDewCan</span>&gt;&gt;</span>
+			}
+		</code>
+	</pre>
+</blockquote>
+		<p>To:</p>
+		<h3>MyAwesomeApiService.kt</h3>
+<blockquote>
+	<pre>
+		<code>
+			<span class="keyword">interface </span><span class="className">MyAwesomeAPIService</span> {
+			  	<span class="annotation">@GET(<span class="parameterValue">"/mtndew/flavors"</span>)</span>
+				<span class="keyword">fun</span> <span class="className">fetchMtnDewFlavors()</span>:<span class="annotation">LiveData</span>&lt;<span class="className">ApiResult</span></span>&lt;<span class="className">List</span>&lt;<span class="annotation">MtnDewCan</span>&gt;&gt;&gt;
+			}
+		</code>
+	</pre>
+</blockquote>
+	</p>
+	<h1>Whoa there! 🤠 What is that ApiResult class? 🤔</h1>
+	<p>The ApiResult.kt class is a model class provided in the library too, it contains your response object inside its body property, a code is also contained and an error string is also there somewhere in the class if you want some of that <b>spicy error handling</b> (that you should <b>definitely have</b>), it comes as a <b>String</b>.</p>
+
+<p>What to do with that error string?, You can print it as it is, it can be a JSON/XML string too! (if the server is responding with custom JSON errors, that it <b>should be</b>) so you can use <b>GSON</b>, <b>Jackson</b> or whatever parsing tool you want to handle the custom error response error or something like that.</p>
+
+<p>You can also use it to poke your eyes out but, why would you? (<i>actually you can't, it is a String, is not a physical object.	 you dummy!</i>)</p>
+
+<h1>So... I don't want to use this ApiResult class of yours</h1>
+<p>I was also thinking in an Adapter that simply parses to a <b>LiveData</b> containing your response object and siply setting the value as <b>null</b> if <b>any exception happens</b> during the call, I was planning calling it as <b>LazyLiveDataAdapter</b> or something like that.</p>
+<p>Handling the error of your API call only beacuse you got a <b>null</b> result is <b>a really bad idea!</b> as you don't have any information of what went wrong, (and the customer care deparment is going to love you when a user calls with an <b>oopsie, something wrong happened!</b> message and you don't know what happened!)</p>
+
+<p>Anyway, if you really want to (or you are lazy enough to), this hypotetical <b>LazyLiveDataAdapter</b> is coming sometime in the future (or when I get "lazyless" enough to code it, meh, you can always do <b>a pull request</b>) .
+</p>
+<h1>TLDR, MAY I HAVE SOME ADAPTER, BRÖTHER?</h1>
+<p>Yeah sure, add it to your project like this:</p>
+<blockquote>
+	<pre>
+		<code>
+			<span class="annotation">implementation</span> <span class="parameterValue">'me.alfredobejarano.retrofitadapters:livedata:0.0.2'</span>
+		</code>
+	</pre>
+</blockquote>
+<p>Enjoy! </p>
+<p>Made with ❤️ by <a href="https://www.github.com/AlfredoBejarano" target="_blank">@AlfredoBejarano</a></p>
+<script src=""
+        crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="./src/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+</body>
+</html>
