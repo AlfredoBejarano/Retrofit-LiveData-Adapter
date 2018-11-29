@@ -69,7 +69,7 @@ Anyway, if you really want to (or you are lazy enough to), just set the return t
 
 Yeah sure, add it to your project like this:
 
-``implementation 'me.alfredobejarano.retrofitadapters:livedata:0.0.1'``
+``implementation 'me.alfredobejarano.retrofitadapters:livedata:0.0.2'``
 
 Enjoy! :happy:
 
