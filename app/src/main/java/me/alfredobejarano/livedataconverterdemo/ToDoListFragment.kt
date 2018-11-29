@@ -1,9 +1,12 @@
 package me.alfredobejarano.livedataconverterdemo
 
-import android.app.ProgressDialog
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,10 +16,14 @@ import me.alfredobejarano.livedataconverterdemo.utilities.Injector
 import me.alfredobejarano.livedataconverterdemo.viewmodel.ToDoListViewModel
 
 /**
- * Activity that displays a List of ToDo objects inside a RecyclerView.
- */
-class ToDoListActivity : AppCompatActivity() {
-    private var mLoadingDialog: ProgressDialog? = null
+ *
+ * Simple [Fragment] subclass that displays a list of ToDo in a RecyclerView.
+ *
+ * @author Alfredo Bejarano
+ * @since November 29, 2018 - 16:28
+ * @version 1.0
+ **/
+class ToDoListFragment : Fragment() {
     /**
      * Defines the root view of this activity.
      */
@@ -29,29 +36,34 @@ class ToDoListActivity : AppCompatActivity() {
      * Uses dependency inversion for retrieving a ViewModel Factory for this UI controller ViewModel.
      */
     private val mViewModelFactory = Injector.toDoListViewModelFactory
+    /**
+     * reference to the loading view from the activity.
+     */
+    private lateinit var mLoading: ProgressBar
 
     /**
-     * Creates this activity, retrieves the ViewModel for this UI
-     * controller and then proceeds to fetch the list of ToDo objects.
-     *
-     * @param savedInstanceState The saved state of a previous instance of this activity.
+     * Creates the RecyclerView that will hold the ToDo elements.
      */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        // Execute the super method.
-        super.onCreate(savedInstanceState)
-        // Initialize the root view.
-        mRootView = RecyclerView(this).also {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? =
+        RecyclerView(requireContext()).also {
             // Assign a layout manager while creating the root view.
-            it.layoutManager = LinearLayoutManager(this)
-        }
+            it.layoutManager = LinearLayoutManager(requireContext())
+        }.also { mRootView = it }
+
+    /**
+     * Retrieves the list of ToDd objects after creating the root view.
+     */
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // Retrieve a ViewModel for this activity using dependency inversion.
         mViewModel = ViewModelProviders.of(this, mViewModelFactory)[ToDoListViewModel::class.java]
-        // Sets the activity root as a simple progress bar.
-        setContentView(R.layout.layout_loading)
+        // Get the reference for the activity loading view.
+        mLoading = requireActivity().findViewById(R.id.loading)
         // Retrieve the To Do list.
         mViewModel.getList().observe(this, Observer { result ->
-            // Sets the activity root as the RecyclerView.
-            setContentView(mRootView)
             // Create an adapter for the view if the result body is not null.
             result.body?.let {
                 // Parse the results as a MutableList.
@@ -62,8 +74,10 @@ class ToDoListActivity : AppCompatActivity() {
                 mRootView.adapter = ToDoAdapter(results)
             } ?: run {
                 // Simple error handling, a better implementation can be made, this is just for the demo.
-                Toast.makeText(this, result.error, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), result.error, Toast.LENGTH_SHORT).show()
             }
+            // Hide the loading view.
+            mLoading.visibility = View.GONE
         })
     }
 }

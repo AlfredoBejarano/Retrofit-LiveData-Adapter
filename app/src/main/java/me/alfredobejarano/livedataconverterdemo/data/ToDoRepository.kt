@@ -21,4 +21,13 @@ class ToDoRepository(private val dataSource: ToDoApiService) {
      */
     fun fetchToDoList(): LiveData<ApiResult<List<ToDo>>> =
         Transformations.map(dataSource.fetchTODOList()) { it }
+
+    /**
+     * Fetches a single of To Do object by its id and
+     * reports it via a [Transformation][Transformations.map].
+     * @param id Id of the ToDo object.
+     * @return [LiveData] containing the ToDo result.
+     */
+    fun fetchToDo(id: Int): LiveData<ToDo> =
+        Transformations.map(dataSource.fetchTODO(id)) { it }
 }

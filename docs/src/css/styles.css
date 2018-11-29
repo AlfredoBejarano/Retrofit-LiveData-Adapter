@@ -1,0 +1,86 @@
+html , body {
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+    padding: 0px;
+    font-family: 'Lato', sans-serif;
+    background: #263238; 
+    overflow-x: hidden;
+}
+
+header {
+	margin: 0px;
+	width: 100%;
+	background: #263238; 
+	padding: 16px 8px 16px 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+	background-image: linear-gradient(90deg, #2E3C43, #263238);
+}
+
+header > h1 {
+	color: rgba(233, 30, 99, 1);
+	text-align: center;
+}
+
+header > h2 {
+	color: rgba(233, 30, 99, 0.7);
+	text-align: center;
+}
+
+header > a  {
+	width: 10%;
+	margin: auto;
+	display: block;
+	font-size: 16px;
+	text-align: center;
+	border-radius:  5px;
+	text-decoration: none;
+	color: rgba(233, 30, 99, 0.7);
+	padding: 16px 12px 16px 12px;
+	transition: background-color ease 0.5s;
+	border: 2px solid rgba(233, 30, 99, 0.2);
+	background-color: rgba(233, 30, 99, 0.1);
+}
+
+header > a:hover {
+	background-color: rgba(233, 30, 99, 0.2);
+}
+
+p {
+	color: #FFF;
+	margin: 8px 128px 8px 32px;
+	padding: 16px;
+	text-align: justify;
+	font-size: 18px;
+}
+
+body > h1, body > h3 {
+	margin-left: 48px;
+	color: rgba(233, 30, 99, 1);
+}
+
+blockquote {
+	color:  #F9F9F9;
+	background: #1E272C;
+}
+
+code {
+	font-size: 16px;
+}
+
+span.keyword {
+	color: #e91e63;
+}
+
+span.parameterValue, span.className {
+	color: #1ee9a4;
+}
+
+span.annotation {
+	color: #e9a41e;
+}
+
+a {
+	color: rgba(233, 30, 99, 1);
+	text-decoration: none;
+}

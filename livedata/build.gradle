@@ -21,10 +21,10 @@ ext {
 
     libraryDescription = 'Adapter for Retrofit 2 that allows using LiveData objects instead of Call objects.'
 
-    siteUrl = ''
+    siteUrl = 'https://alfredobejarano.github.io/Retrofit-LiveData-Adapter/'
     gitUrl = 'https://github.com/AlfredoBejarano/Retrofit-LiveData-Adapter'
 
-    libraryVersion = '0.0.1'
+    libraryVersion = '0.0.2'
 
     developerId = 'alfredobejarano'
     developerName = 'Alfredo Bejarano'
@@ -48,14 +48,15 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -64,14 +65,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'androidx.lifecycle:lifecycle-livedata:2.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
 repositories {
     mavenCentral()
