@@ -99,7 +99,7 @@ class LiveDataAdapter<T>(private val responseType: Type) : CallAdapter<T, LiveDa
                 val rawType = getRawType(type)
                 when {
                     // When the rawType is not an ApiResult, thrown an Illegal exception detailing that the result object must be inside an ApiResult object.
-                    rawType != ApiResult::class.java -> throw IllegalArgumentException("The expected object must be inside an ApiResult object!")
+                    rawType != ApiResult::class.java -> LazyLiveDataAdapter<Any>(rawType)
                     // When the type is not a ParameterizedType, detail that the resource must be parameterized.
                     type !is ParameterizedType -> throw IllegalArgumentException("Resource must be parameterized!")
                     // If nothing else happens, get the type of for the body and return a LiveDataAdapter object.

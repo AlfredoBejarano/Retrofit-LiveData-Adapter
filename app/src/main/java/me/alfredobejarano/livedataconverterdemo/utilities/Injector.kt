@@ -7,6 +7,8 @@ import me.alfredobejarano.livedataconverterdemo.BuildConfig
 import me.alfredobejarano.livedataconverterdemo.data.ToDoApiService
 import me.alfredobejarano.livedataconverterdemo.data.ToDoRepository
 import me.alfredobejarano.livedataconverterdemo.viewmodel.ToDoListViewModel
+import me.alfredobejarano.livedataconverterdemo.viewmodel.ToDoViewModel
+import me.alfredobejarano.retrofitadapters.LazyLiveDataAdapter
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -43,6 +45,7 @@ object Injector {
      */
     private val client: OkHttpClient by lazy {
         OkHttpClient.Builder()
+            .connectTimeout(10L, TimeUnit.SECONDS)
             .writeTimeout(10L, TimeUnit.SECONDS)
             .readTimeout(10L, TimeUnit.SECONDS)
             .addInterceptor(interceptor)
@@ -56,8 +59,8 @@ object Injector {
         Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(LiveDataAdapter.Factory())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ToDoApiService::class.java)
     }
@@ -74,5 +77,12 @@ object Injector {
      */
     val toDoListViewModelFactory by lazy {
         ToDoListViewModel.Factory(toDoRepository)
+    }
+
+    /**
+     * Provides injection for a [ToDoViewModel.Factory] class.
+     */
+    val toDoViewModelFactory by lazy {
+        ToDoViewModel.Factory(toDoRepository)
     }
 }
