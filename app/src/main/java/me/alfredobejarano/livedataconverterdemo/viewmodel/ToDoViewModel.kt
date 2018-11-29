@@ -2,6 +2,7 @@ package me.alfredobejarano.livedataconverterdemo.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import me.alfredobejarano.livedataconverterdemo.data.ToDo
 import me.alfredobejarano.livedataconverterdemo.data.ToDoRepository
 
@@ -22,4 +23,14 @@ class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
      */
     fun fetchToDo(toDoId: Int): LiveData<ToDo> =
         repository.fetchToDo(toDoId)
+
+    /**
+     * Factory class that tells a LifeCycleOwner how to
+     * create an instance of a [ToDoViewModel] class.
+     */
+    class Factory(private val repository: ToDoRepository) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>) =
+            ToDoViewModel(repository) as T
+    }
 }
