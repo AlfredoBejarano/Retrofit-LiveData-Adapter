@@ -16,7 +16,7 @@ import me.alfredobejarano.livedataconverterdemo.data.ToDoRepository
  **/
 class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
     /**
-     * Retrieves a ToDO from the cloud by its id.
+     * Retrieves a ToDo from the cloud by its id.
      * @param toDoId Id of the ToDo object.
      * @return [LiveData] object containing the [ToDo].
      */

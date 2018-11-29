@@ -15,7 +15,7 @@ import me.alfredobejarano.livedataconverterdemo.viewmodel.ToDoListViewModel
 /**
  * Activity that displays a List of ToDo objects inside a RecyclerView.
  */
-class ToDoListActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private var mLoadingDialog: ProgressDialog? = null
     /**
      * Defines the root view of this activity.
