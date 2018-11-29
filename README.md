@@ -1,5 +1,5 @@
 # Retrofit-LiveData-Adapter
-![badge](https://img.shields.io/badge/version-0.0.1-brightgreen.svg?style=plastic)
+[ ![Download](https://api.bintray.com/packages/alfredobejarano/RetrofitLiveDataAdapter/livedata/images/download.svg) ](https://bintray.com/alfredobejarano/RetrofitLiveDataAdapter/livedata/_latestVersion)
 
 Adapter for Retrofit 2 that allows using LiveData objects as return a return type for API definitions
 
